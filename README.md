@@ -26,12 +26,16 @@ mvn spring-boot:run
 
 This starts the API on [http://localhost:8080](http://localhost:8080). Key endpoints include:
 
-- `GET /api/questions` – all questions or filtered by `topic`/`subtopic`
-- `GET /api/questions/{id}` – single question lookup
-- `GET /api/topics` – list of available topics
-- `GET /api/topics/{slug}/questions` – questions scoped to a topic
-- `GET /api/subtopics` – list of subtopics
-- `GET /api/subtopics/{name}/questions` – questions scoped to a subtopic
+| Method | Path | Full local URL | Description | Query parameters |
+| ------ | ---- | -------------- | ----------- | ---------------- |
+| `GET` | `/api/questions` | `http://localhost:8080/api/questions` | Returns every Blind 75 question. Use query parameters to limit the results. | `topic` (optional): topic slug such as `arrays-and-strings`; `subtopic` (optional): human readable subtopic such as `Binary Search` |
+| `GET` | `/api/questions/{id}` | `http://localhost:8080/api/questions/{id}` | Fetches a single question by its numeric identifier from the sheet. Replace `{id}` with the desired question ID (e.g., `http://localhost:8080/api/questions/1`). | _None_ |
+| `GET` | `/api/topics` | `http://localhost:8080/api/topics` | Lists all available topics with their slugs and display names. | _None_ |
+| `GET` | `/api/topics/{slug}/questions` | `http://localhost:8080/api/topics/{slug}/questions` | Returns every question that belongs to the provided topic slug. Example: `http://localhost:8080/api/topics/dynamic-programming/questions`. | _None_ |
+| `GET` | `/api/subtopics` | `http://localhost:8080/api/subtopics` | Lists every subtopic across all Blind 75 categories. | _None_ |
+| `GET` | `/api/subtopics/{name}/questions` | `http://localhost:8080/api/subtopics/{name}/questions` | Returns questions scoped to a given subtopic name. Replace `{name}` with the exact subtopic string, URL-encoded when necessary (e.g., `http://localhost:8080/api/subtopics/Two%20Pointers/questions`). | _None_ |
+
+Each of these URLs can be pasted directly into Postman while the Spring Boot app is running locally.
 
 ## Running the frontend
 
